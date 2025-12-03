@@ -266,11 +266,3 @@ docker compose up --build -d
 
 - [SPECIFICATION.md](SPECIFICATION.md): 詳細なシステム仕様書
 - [CLAUDE.md](CLAUDE.md): Claude CLI の使い方ガイド
-
-## ライセンス
-
-MIT License
-
-## 貢献
-
-プルリクエストを歓迎します。大きな変更の場合は、まず issue を開いて変更内容を議論してください。
