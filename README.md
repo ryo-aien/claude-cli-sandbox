@@ -30,17 +30,6 @@ cd claude-cli-sandbox
 ```bash
 # .env.example をコピー
 cp .env.example .env
-
-# ホストの UID/GID を確認
-id -u  # HOST_UID
-id -g  # HOST_GID
-```
-
-`.env` ファイルを編集して、ホストの UID/GID を設定：
-
-```bash
-HOST_UID=501
-HOST_GID=20
 ```
 
 ### 3. コンテナのビルドと起動
