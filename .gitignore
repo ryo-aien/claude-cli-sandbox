@@ -5,7 +5,6 @@
 .docker/
 
 # Claude CLI 設定
-.claude/
 .config/claude/
 
 # カスタムバイナリ
