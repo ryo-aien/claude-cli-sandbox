@@ -48,7 +48,13 @@
       "Bash(init:*)",
       "Bash(git push:*)",
       "Bash(git pull:*)",
-      "Bash(rm -rf:*)"
+      "Bash(rm -rf:*)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Edit(**/.env)",
+      "Edit(**/.env.*)",
+      "Write(**/.env)",
+      "Write(**/.env.*)"
     ],
     "defaultMode": "default"
   },
