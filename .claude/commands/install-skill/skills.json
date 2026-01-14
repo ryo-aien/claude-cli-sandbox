@@ -8,6 +8,14 @@
       "comment": "Anthropic公式スキル集"
     }
   ],
+  "marketplace_skills": [
+    {
+      "name": "example-skills",
+      "source": "marketplace:anthropics/example-skills",
+      "enabled": false,
+      "comment": "Anthropic公式サンプルスキル集（マーケットプレイス経由）"
+    }
+  ],
   "skills": [
     {
       "name": "pdf",
