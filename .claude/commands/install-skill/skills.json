@@ -8,14 +8,6 @@
       "comment": "Anthropic公式スキル集"
     }
   ],
-  "marketplace_skills": [
-    {
-      "name": "example-skills",
-      "source": "marketplace:anthropics/example-skills",
-      "enabled": false,
-      "comment": "Anthropic公式サンプルスキル集（マーケットプレイス経由）"
-    }
-  ],
   "skills": [
     {
       "name": "pdf",
@@ -112,6 +104,12 @@
       "source": "github:anthropics/skills/skills/slack-gif-creator",
       "enabled": false,
       "comment": "Slack用GIF作成ツール"
+    },
+    {
+      "name": "example-skills",
+      "source": "marketplace:anthropics/example-skills",
+      "enabled": false,
+      "comment": "Anthropic公式サンプルスキル集（マーケットプレイス経由）"
     }
   ]
 }
