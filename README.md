@@ -92,6 +92,7 @@ docker compose logs -f claude
 ```bash
 # Claude CLI の起動
 claude
+claude --dangerously-skip-permissions # すべての確認をスキップ
 
 # バージョン確認
 claude --version
