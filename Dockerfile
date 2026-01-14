@@ -64,5 +64,8 @@ echo "Claude CLI installation completed!"' > /usr/local/bin/install-claude \
 
 USER ${USER_NAME}
 
+# Claude CLI のインストール
+RUN /usr/local/bin/install-claude
+
 # デフォルトコマンド
 CMD ["/bin/bash"]

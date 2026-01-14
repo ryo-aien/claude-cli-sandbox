@@ -15,6 +15,7 @@
       "Bash(git branch:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
+      "Bash(git clone:*)",
       "Bash(npm test:*)",
       "Bash(npm run:*)",
       "Bash(node:*)",
@@ -23,11 +24,11 @@
       "Bash(npm install:*)",
       "Bash(npm uninstall:*)",
       "Bash(yarn install:*)",
-      "Bash(pip install:*)"
+      "Bash(pip install:*)",
+      "Bash(cp:*)",
+      "Bash(rm:*)"
     ],
     "deny": [
-      "Bash(rm -rf /:*)",
-      "Bash(rm -rf /*:*)",
       "Bash(chmod 777 /:*)",
       "Bash(chmod -R 777 /:*)",
       "Bash(git push --force:*)",

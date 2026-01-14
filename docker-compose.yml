@@ -9,7 +9,8 @@ services:
         USER_GID: ${HOST_GID:-1000}
     container_name: claude-cli-sandbox
     volumes:
-      - ${CLAUDE_WORKSPACE_DIR:-.}:/workspace
+      - ${CLAUDE_WORKSPACE_DIR:-.}/workspace:/workspace
+      - ./.claude:/workspace/.claude
     environment:
       - CLAUDE_INSTALL_CMD=${CLAUDE_INSTALL_CMD:-}
     stdin_open: true

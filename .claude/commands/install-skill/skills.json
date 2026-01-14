@@ -1,0 +1,109 @@
+{
+  "description": "インストールするスキル/プラグインのリスト",
+  "plugins": [
+    {
+      "name": "anthropic-skills",
+      "marketplace": "anthropics/skills",
+      "package": "anthropic-skills@anthropics",
+      "comment": "Anthropic公式スキル集"
+    }
+  ],
+  "skills": [
+    {
+      "name": "pdf",
+      "source": "github:anthropics/skills/skills/pdf",
+      "enabled": true,
+      "comment": "PDF文書の作成・編集"
+    },
+    {
+      "name": "docx",
+      "source": "github:anthropics/skills/skills/docx",
+      "enabled": false,
+      "comment": "Word文書(.docx)の作成・編集"
+    },
+    {
+      "name": "xlsx",
+      "source": "github:anthropics/skills/skills/xlsx",
+      "enabled": false,
+      "comment": "Excelスプレッドシート(.xlsx)の作成・編集"
+    },
+    {
+      "name": "pptx",
+      "source": "github:anthropics/skills/skills/pptx",
+      "enabled": false,
+      "comment": "PowerPointプレゼンテーション(.pptx)の作成・編集"
+    },
+    {
+      "name": "mcp-builder",
+      "source": "github:anthropics/skills/skills/mcp-builder",
+      "enabled": true,
+      "comment": "MCPサーバーの生成ツール"
+    },
+    {
+      "name": "webapp-testing",
+      "source": "github:anthropics/skills/skills/webapp-testing",
+      "enabled": false,
+      "comment": "Webアプリケーションのテストユーティリティ"
+    },
+    {
+      "name": "skill-creator",
+      "source": "github:anthropics/skills/skills/skill-creator",
+      "enabled": false,
+      "comment": "新しいスキルを作成するツール"
+    },
+    {
+      "name": "frontend-design",
+      "source": "github:anthropics/skills/skills/frontend-design",
+      "enabled": false,
+      "comment": "フロントエンドデザインスキル"
+    },
+    {
+      "name": "brand-guidelines",
+      "source": "github:anthropics/skills/skills/brand-guidelines",
+      "enabled": false,
+      "comment": "ブランドガイドラインと標準ドキュメント"
+    },
+    {
+      "name": "internal-comms",
+      "source": "github:anthropics/skills/skills/internal-comms",
+      "enabled": false,
+      "comment": "社内コミュニケーションツール"
+    },
+    {
+      "name": "doc-coauthoring",
+      "source": "github:anthropics/skills/skills/doc-coauthoring",
+      "enabled": false,
+      "comment": "ドキュメント共同編集機能"
+    },
+    {
+      "name": "web-artifacts-builder",
+      "source": "github:anthropics/skills/skills/web-artifacts-builder",
+      "enabled": false,
+      "comment": "Webアーティファクト・コンポーネント構築"
+    },
+    {
+      "name": "theme-factory",
+      "source": "github:anthropics/skills/skills/theme-factory",
+      "enabled": false,
+      "comment": "テーマ生成・カスタマイズ"
+    },
+    {
+      "name": "canvas-design",
+      "source": "github:anthropics/skills/skills/canvas-design",
+      "enabled": false,
+      "comment": "Canvasベースのデザインツール"
+    },
+    {
+      "name": "algorithmic-art",
+      "source": "github:anthropics/skills/skills/algorithmic-art",
+      "enabled": false,
+      "comment": "アルゴリズミックアート生成"
+    },
+    {
+      "name": "slack-gif-creator",
+      "source": "github:anthropics/skills/skills/slack-gif-creator",
+      "enabled": false,
+      "comment": "Slack用GIF作成ツール"
+    }
+  ]
+}

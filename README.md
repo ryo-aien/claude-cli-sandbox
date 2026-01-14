@@ -58,6 +58,16 @@ install-claude
 claude
 ```
 
+### 7. スキルのインストール（オプション）
+
+Claude CLI 内で以下のコマンドを実行して、追加のスキルをインストールできます：
+
+```
+/install-skill
+```
+
+このコマンドは `skills.json` に定義されたスキル/プラグインを一括インストールします。
+
 **初回実行時の認証について**:
 
 1. Claude CLI を起動すると、ターミナルに認証用の URL が表示されます
@@ -75,7 +85,7 @@ claude
 
 ```bash
 # コンテナの起動
-docker compose up -d
+docker compose up --build -d
 
 # コンテナへの接続
 docker compose exec claude bash
