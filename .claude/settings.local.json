@@ -70,5 +70,6 @@
   },
   "includeCoAuthoredBy": true,
   "spinnerTipsEnabled": true,
-  "alwaysThinkingEnabled": false
+  "alwaysThinkingEnabled": false,
+  "language": "japanese"
 }
