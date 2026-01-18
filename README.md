@@ -77,8 +77,6 @@ Claude CLI 内で以下のコマンドを実行して、追加のスキルをイ
 5. ターミナルに戻ると、Claude CLI が使用可能になります
 6. 認証情報は `~/.config/claude/` に保存され、次回以降は再認証不要です
 
-**注意**: Docker コンテナ内で実行しているため、認証情報はコンテナ内に保存されます。コンテナを削除すると認証情報も削除されるため、再度認証が必要になります。
-
 ## 基本的な使い方
 
 ### コンテナの操作
@@ -92,9 +90,6 @@ docker compose exec claude bash
 
 # コンテナの停止
 docker compose down
-
-# コンテナのログを表示
-docker compose logs -f claude
 ```
 
 ### Claude CLI の操作
@@ -103,12 +98,6 @@ docker compose logs -f claude
 # Claude CLI の起動
 claude
 claude --dangerously-skip-permissions # すべての確認をスキップ
-
-# バージョン確認
-claude --version
-
-# ヘルプ表示
-claude --help
 ```
 
 ### Claude CLI の終了方法
@@ -140,106 +129,6 @@ claude-cli-sandbox/
     └── guardrails.yaml       # ガードレールルール
 ```
 
-## ガードレールについて
-
-このプロジェクトには、Claude CLI エージェントが実行できるコマンドを制限するガードレールが含まれています。
-
-### ブロックされるコマンド
-
-- `rm -rf /`, `rm -rf .`, `rm -rf ~`: ルートディレクトリの削除
-- `mkfs`, `fdisk`, `parted`: ディスクパーティション操作
-- `shutdown`, `reboot`, `halt`: システム停止
-- ルートディレクトリに対する `chmod`/`chown`
-- `git push --force`: 強制プッシュ
-- `git reset --hard`: ハードリセット
-- `/workspace` 以外へのファイル編集
-
-### 確認が必要なコマンド
-
-- `apt install`, `apt-get install`: システムパッケージのインストール
-- `npm install`, `npm update`: Node.js パッケージのインストール
-
-詳細は `guardrails/guardrails.yaml` を参照してください。
-
-## トラブルシューティング
-
-### ファイル所有権の不一致
-
-**症状**: ホストでファイルが編集できない、`Permission denied` エラー
-
-**解決方法**:
-```bash
-# ホストの UID/GID を再確認
-id -u
-id -g
-
-# .env ファイルで HOST_UID と HOST_GID を修正
-# コンテナを再ビルド
-docker compose down
-docker compose up --build -d
-```
-
-### Claude CLI がインストールできない
-
-**症状**: `install-claude` が失敗する、npm エラーが発生
-
-**解決方法**:
-```bash
-# コンテナ内で手動インストールを試す
-docker compose exec claude bash
-npm install -g @anthropics/claude
-
-# 詳細ログを確認
-npm install -g @anthropics/claude --verbose
-```
-
-### 認証エラーが発生する
-
-**症状**: 認証エラーが発生、Claude CLI が起動しない
-
-**解決方法**:
-```bash
-# コンテナに接続
-docker compose exec claude bash
-
-# 認証情報をリセット
-rm -rf ~/.config/claude/
-
-# Claude CLI を再起動して再認証
-claude
-```
-
-### コンテナが起動しない
-
-**解決方法**:
-```bash
-# ログを確認
-docker compose logs
-
-# イメージを再ビルド
-docker compose build --no-cache
-
-# 古いコンテナを削除
-docker compose down -v
-docker compose up --build
-```
-
-## カスタマイズ
-
-### カスタムインストールコマンドの使用
-
-`.env` ファイルで `CLAUDE_INSTALL_CMD` を設定：
-
-```bash
-CLAUDE_INSTALL_CMD="npm install -g @anthropics/claude@beta"
-```
-
-### ローカルバイナリの使用
-
-1. Claude CLI バイナリを `./bin/claude` に配置
-2. コンテナを再起動: `docker compose restart`
-3. `install-claude` を実行
-
 ### ワークスペースディレクトリの変更
 
 `.env` ファイルで `CLAUDE_WORKSPACE_DIR` を設定：
@@ -251,25 +140,8 @@ CLAUDE_WORKSPACE_DIR=./my-project
 ## セキュリティについて
 
 - コンテナは非 root ユーザーで実行されます
-- ガードレールにより危険なコマンドがブロックされます
 - ファイル編集は `/workspace` 以下に制限されます
 - 認証情報はコンテナ内に安全に保存されます
-
-## アップデート
-
-### Claude CLI のアップデート
-
-```bash
-docker compose exec claude bash
-npm update -g @anthropics/claude
-```
-
-### ベースイメージのアップデート
-
-```bash
-docker compose pull
-docker compose up --build -d
-```
 
 ## 詳細ドキュメント
 
