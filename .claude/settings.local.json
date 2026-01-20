@@ -28,14 +28,10 @@
       "Bash(cp:*)",
       "Bash(rm:*)",
       "Fetch(**)",
-      "Web Search(**)"
-    ],
-    "deny": [
+      "Web Search(**)",
       "Bash(chmod 777 /:*)",
       "Bash(chmod -R 777 /:*)",
-      "Bash(git push --force:*)",
-      "Bash(git push -f:*)",
-      "Bash(git reset --hard HEAD~:*)",
+      "Bash(git pull:*)",
       "Bash(curl:*)",
       "Bash(wget:*)",
       "Bash(sudo rm:*)",
@@ -48,9 +44,13 @@
       "Bash(systemctl:*)",
       "Bash(reboot:*)",
       "Bash(shutdown:*)",
-      "Bash(init:*)",
+      "Bash(init:*)"
+    ],
+    "deny": [
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git reset --hard HEAD~:*)",
       "Bash(git push:*)",
-      "Bash(git pull:*)",
       "Bash(rm -rf:*)",
       "Read(**/.env)",
       "Read(**/.env.*)",
