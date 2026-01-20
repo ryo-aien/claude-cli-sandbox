@@ -71,5 +71,19 @@
   "includeCoAuthoredBy": true,
   "spinnerTipsEnabled": true,
   "alwaysThinkingEnabled": false,
-  "language": "japanese"
+  "language": "japanese",
+  "extraKnownMarketplaces": {
+    "github-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-code-marketplace"
+      }
+    },
+    "skill-creator": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-code-skill-creator"
+      }
+    }
+  }
 }
