@@ -48,7 +48,9 @@
       "Bash(init:*)",
       "Bash(done)",
       "Bash(xargs ls:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(chmod:*)"
     ],
     "deny": [
       "Bash(git push --force:*)",
