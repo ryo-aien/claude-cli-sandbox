@@ -49,8 +49,15 @@
       "Bash(done)",
       "Bash(xargs ls:*)",
       "Bash(find:*)",
-      "WebFetch(domain:raw.githubusercontent.com)",
-      "Bash(chmod:*)"
+      "Bash(chmod:*)",
+      "WebFetch(domain:*)",
+      "Bash(docker compose:*)",
+      "Skill(**)",
+      "Bash(wc:*)",
+      "Bash(grep:*)",
+      "WebSearch",
+      "WebFetch(domain:claude.com)",
+      "WebFetch(domain:support.claude.com)"
     ],
     "deny": [
       "Bash(git push --force:*)",
@@ -66,6 +73,9 @@
       "Write(**/.env.*)"
     ],
     "defaultMode": "default"
+  },
+  "planStorage": {
+    "path": ".claude/plans"
   },
   "extraKnownMarketplaces": {
     "github-marketplace": {
