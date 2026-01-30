@@ -12,7 +12,7 @@ The user provides frontend requirements: a component, page, application, or inte
 
 Before coding, understand the context and commit to a BOLD aesthetic direction:
 - **Purpose**: What problem does this interface solve? Who uses it?
-- **Tone**: Pick an extreme: brutally minimal, maximalist chaos, retro-futuristic, organic/natural, luxury/refined, playful/toy-like, editorial/magazine, brutalist/raw, art deco/geometric, soft/pastel, industrial/utilitarian, etc. There are so many flavors to choose from. Use these for inspiration but design one that is true to the aesthetic direction.
+- **Tone**: Use the `AskUserQuestion` tool to ask the user which aesthetic direction they prefer. Provide options such as: brutally minimal, maximalist chaos, retro-futuristic, luxury/refined, playful/toy-like, editorial/magazine, brutalist/raw, soft/pastel. The user can also choose "Other" to describe their own vision. Wait for the user's response before proceeding with the design.
 - **Constraints**: Technical requirements (framework, performance, accessibility).
 - **Differentiation**: What makes this UNFORGETTABLE? What's the one thing someone will remember?
 
