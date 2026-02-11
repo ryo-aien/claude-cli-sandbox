@@ -102,5 +102,29 @@
     }
   },
   "spinnerTipsEnabled": true,
-  "alwaysThinkingEnabled": false
+  "alwaysThinkingEnabled": false,
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'ENABLED=$(grep LINE_NOTIFY_ENABLED /workspace/.env | cut -d= -f2); [ \"$ENABLED\" != \"true\" ] && exit 0; TOKEN=$(grep LINE_NOTIFY_TOKEN /workspace/.env | cut -d= -f2) && curl -s -X POST https://api.line.me/v2/bot/message/broadcast -H \"Content-Type: application/json\" -H \"Authorization: Bearer $TOKEN\" -d \"{\\\"messages\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Claude Code のタスクが完了しました！\\\"}]}\"'"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'ENABLED=$(grep LINE_NOTIFY_ENABLED /workspace/.env | cut -d= -f2); [ \"$ENABLED\" != \"true\" ] && exit 0; TOKEN=$(grep LINE_NOTIFY_TOKEN /workspace/.env | cut -d= -f2) && curl -s -X POST https://api.line.me/v2/bot/message/broadcast -H \"Content-Type: application/json\" -H \"Authorization: Bearer $TOKEN\" -d \"{\\\"messages\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"⏸Claude Code が確認を求めています\\\"}]}\"'"
+          }
+        ]
+      }
+    ]
+  }
 }
