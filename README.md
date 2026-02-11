@@ -109,24 +109,64 @@ claude --dangerously-skip-permissions # すべての確認をスキップ
 
 ```
 claude-cli-sandbox/
+├── .claude/                  # Claude Code 設定
+│   ├── commands/             # カスタムスキル
+│   ├── plans/                # プランモード保存先
+│   └── settings.local.json   # ローカル設定（Hooks 等）
 ├── .env.example              # 環境変数テンプレート
 ├── .gitignore                # Git 除外設定
+├── CLAUDE.md                 # Claude CLI 使用ガイド
 ├── Dockerfile                # Docker イメージ定義
-├── docker-compose.yml        # Docker Compose 設定
 ├── README.md                 # 本ドキュメント
 ├── SPECIFICATION.md          # 詳細仕様書
-├── CLAUDE.md                 # Claude CLI 使用ガイド
-└── guardrails/               # ガードレール定義
-    └── guardrails.yaml       # ガードレールルール
+└── docker-compose.yml        # Docker Compose 設定
 ```
 
 ### ワークスペースディレクトリの変更
 
 `.env` ファイルで `CLAUDE_WORKSPACE_DIR` を設定：
 
+
+## LINE 通知設定
+
+Claude Code の Hooks 機能を利用して、タスク完了時や確認待ち時に LINE へ通知を送ることができます。
+
+### 通知タイミング
+
+| イベント | タイミング | メッセージ |
+|---------|-----------|-----------|
+| Stop | タスク完了時 | 🎉 Claude Code のタスクが完了しました！ |
+| Notification | 確認待ち時 | ⏸️ Claude Code が確認を求めています |
+
+### セットアップ
+
+1. [LINE Developers Console](https://developers.line.biz/console/) で Messaging API チャネルを作成
+2. Channel Access Token を発行
+3. 作成した Bot を友だち追加
+4. `.env` に以下を設定：
+
 ```bash
-CLAUDE_WORKSPACE_DIR=./my-project
+LINE_NOTIFY_ENABLED=true
+LINE_NOTIFY_TOKEN=発行した Channel Access Token
 ```
+
+### 通知の ON/OFF
+
+`.env` の `LINE_NOTIFY_ENABLED` で切り替えできます。
+
+```bash
+# 通知ON
+LINE_NOTIFY_ENABLED=true
+
+# 通知OFF（true 以外の値はすべて OFF）
+LINE_NOTIFY_ENABLED=false
+```
+
+### 仕組み
+
+- `.claude/settings.local.json` の Hooks で設定
+- LINE Messaging API の [broadcast エンドポイント](https://developers.line.biz/en/reference/messaging-api/#send-broadcast-message)を使用（Bot の友だち全員に送信）
+- トークンは `.env` から実行時に読み取り（設定ファイルに秘密情報を含めない）
 
 ## セキュリティについて
 
