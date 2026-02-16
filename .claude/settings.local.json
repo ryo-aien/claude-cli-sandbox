@@ -75,7 +75,7 @@
     "defaultMode": "default"
   },
   "planStorage": {
-    "path": ".claude/plans"
+    "path": "/workspace/.claude/plans"
   },
   "extraKnownMarketplaces": {
     "github-marketplace": {
