@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     git \
     gnupg \
+    gosu \
     python3 \
     python3-pip \
     sudo \
@@ -34,8 +35,7 @@ ARG USER_GID=1000
 
 # グループとユーザーの作成
 RUN groupadd --gid ${USER_GID} ${USER_NAME} || true \
-    && useradd --uid ${USER_UID} --gid ${USER_GID} -m -s /bin/bash ${USER_NAME} \
-    && echo "${USER_NAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+    && useradd --uid ${USER_UID} --gid ${USER_GID} -m -s /bin/bash ${USER_NAME}
 
 # npm グローバルディレクトリの設定
 ENV NPM_CONFIG_PREFIX="/home/${USER_NAME}/.npm-global"
@@ -73,6 +73,14 @@ USER ${USER_NAME}
 
 # Claude CLI のインストール
 RUN /usr/local/bin/install-claude
+
+# entrypoint スクリプトのコピー
+USER root
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# entrypoint はrootで実行し、内部でgosuによりdevユーザーに切り替える
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 # デフォルトコマンド
 CMD ["/bin/bash"]
