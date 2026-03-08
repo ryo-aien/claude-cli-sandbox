@@ -76,10 +76,8 @@ RUN /usr/local/bin/install-claude
 
 # エントリポイントスクリプトの作成（コンテナ起動時に .env を生成）
 # USER root
-RUN printf '#!/bin/bash\n# umask 077: 所有者のみ読み書き可能なファイルを生成する\numask 077\ntouch /workspace/.env\nchown root:root /workspace/.env\nchmod 600 /workspace/.env\nexec "$@"\n' > /usr/local/bin/docker-entrypoint.sh \
+RUN printf '#!/bin/bash\n# umask 077: 所有者のみ読み書き可能なファイルを生成する\numask 077\ntouch /workspace/.env\nchown root:root /workspace/.env\nchmod 600 /workspace/.env\nexec sudo -u '"${USER_NAME}"' "$@"\n' > /usr/local/bin/docker-entrypoint.sh \
     && chmod +x /usr/local/bin/docker-entrypoint.sh
-
-USER ${USER_NAME}
 
 # デフォルトコマンド
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
