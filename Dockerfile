@@ -81,4 +81,5 @@ RUN printf '#!/bin/bash\n# umask 077: 所有者のみ読み書き可能なファ
 
 # デフォルトコマンド
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+USER ${USER_NAME}
 CMD ["/bin/bash"]
