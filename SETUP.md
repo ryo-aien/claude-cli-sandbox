@@ -61,4 +61,5 @@ gh auth login
 ```bash
 claude
 claude --dangerously-skip-permissions
+claude --enable-auto-mode
 ```

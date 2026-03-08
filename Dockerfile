@@ -42,7 +42,7 @@ ENV NPM_CONFIG_PREFIX="/home/${USER_NAME}/.npm-global"
 ENV PATH="/home/${USER_NAME}/.npm-global/bin:${PATH}"
 
 # ユーザーに切り替え
-USER ${USER_NAME}
+# USER ${USER_NAME}
 
 # npm グローバルディレクトリの作成
 RUN mkdir -p /home/${USER_NAME}/.npm-global
@@ -51,7 +51,7 @@ RUN mkdir -p /home/${USER_NAME}/.npm-global
 WORKDIR /workspace
 
 # Claude CLI インストールスクリプトの作成
-USER root
+# USER root
 RUN echo '#!/bin/bash\n\
 if [ -n "$CLAUDE_INSTALL_CMD" ]; then\n\
     echo "Installing Claude CLI with custom command..."\n\
@@ -69,10 +69,18 @@ echo "Claude CLI installation completed!"' > /usr/local/bin/install-claude \
     && chmod +x /usr/local/bin/install-claude \
     && chown ${USER_NAME}:${USER_NAME} /usr/local/bin/install-claude
 
-USER ${USER_NAME}
+# USER ${USER_NAME}
 
 # Claude CLI のインストール
 RUN /usr/local/bin/install-claude
 
+# エントリポイントスクリプトの作成（コンテナ起動時に .env を生成）
+# USER root
+RUN printf '#!/bin/bash\n# umask 077: 所有者のみ読み書き可能なファイルを生成する\numask 077\ntouch /workspace/.env\nchown root:root /workspace/.env\nchmod 600 /workspace/.env\nexec "$@"\n' > /usr/local/bin/docker-entrypoint.sh \
+    && chmod +x /usr/local/bin/docker-entrypoint.sh
+
+USER ${USER_NAME}
+
 # デフォルトコマンド
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["/bin/bash"]
