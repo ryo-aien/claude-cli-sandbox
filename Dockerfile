@@ -63,6 +63,9 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
 RUN npm install -g playwright \
     && playwright install --with-deps chromium
 
+# Python パッケージマネージャー uv のインストール（全ユーザーが使えるよう /usr/local/bin に配置）
+RUN curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=/usr/local/bin sh
+
 # ユーザー設定用の引数
 ARG USER_NAME=dev
 ARG USER_UID=1000
