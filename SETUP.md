@@ -3,19 +3,19 @@
 ## 1. コンテナのビルドと起動
 
 ```bash
-docker compose up --build -d
+make build
 ```
 
 ## 2. コンテナに接続
 
 ```bash
-docker compose exec claude bash
+make exec
 ```
 
 ## 3. Claude CLI の起動
 
 ```bash
-claude
-claude --dangerously-skip-permissions
-claude --enable-auto-mode
+make claude
+make claude-skip
+make claude-auto
 ```

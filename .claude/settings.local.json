@@ -50,7 +50,8 @@
       "Bash(mkdir -p /workspace/.claude/commands/canvas-project-init/assets/template/canvas)",
       "Read(**/.env.example)",
       "Edit(**/.env.example)",
-      "Write(**/.env.example)"
+      "Write(**/.env.example)",
+      "Bash(ipconfig getifaddr *)"
     ],
     "deny": [
       "Bash(sudo:*)",
