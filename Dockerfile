@@ -60,8 +60,11 @@ RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
     && rm -rf /var/lib/apt/lists/*
 
 # Playwright のインストールとブラウザのダウンロード
+# ブラウザを全ユーザー共通のパスに配置（root でインストールしても dev ユーザーから参照できるようにする）
+ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
 RUN npm install -g playwright \
-    && playwright install --with-deps chromium
+    && playwright install --with-deps chromium \
+    && chmod -R 755 /ms-playwright
 
 # Python パッケージマネージャー uv のインストール（全ユーザーが使えるよう /usr/local/bin に配置）
 RUN curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=/usr/local/bin sh
@@ -74,7 +77,8 @@ ARG USER_GID=1000
 # グループとユーザーの作成
 RUN groupadd --gid ${USER_GID} ${USER_NAME} || true \
     && useradd --uid ${USER_UID} --gid ${USER_GID} -m -s /bin/bash ${USER_NAME} \
-    && echo "${USER_NAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+    && echo "${USER_NAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers \
+    && echo 'Defaults env_keep += "PLAYWRIGHT_BROWSERS_PATH"' >> /etc/sudoers
 
 # npm グローバルディレクトリの設定
 ENV NPM_CONFIG_PREFIX="/home/${USER_NAME}/.npm-global"
